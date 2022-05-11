@@ -12,6 +12,7 @@ module.exports = {
       emerald: '#16A34A',
       indigo: colors.indigo,
       yellow: colors.yellow,
+      blue: '#2563EB',
     },
     extend: {},
   },

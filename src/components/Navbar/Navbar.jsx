@@ -15,9 +15,9 @@ export default function Navbar({
     // should this be width of screen or full
     <nav className="grid w-screen justify-items-center h-20 bg-black sticky">
       {/* navbar */}
-      <div className="relative grid grid-cols-2 h-20 w-full justify-items-center items-center lg:max-w-6xl">
+      <div className="relative grid grid-cols-2 h-full w-full justify-items-center items-center lg:max-w-6xl">
         {/* navbar-container */}
-        <div className="flex items-center h-20 lg:mr-40">
+        <div className="flex items-center h-full lg:mr-40">
           {/* logo-container */}
           <a href="/">
             <img
@@ -31,14 +31,18 @@ export default function Navbar({
           </h1>
         </div>
         <ul className={click ? 'absolute h-96 w-full -left-0 top-20 grid grid-rows-4 ease-in duration-500 lg:mr-32 lg:grid-rows-none lg:grid-cols-4 lg:static lg:h-20'
-          : 'absolute h-96 w-full -left-full top-20 grid grid-rows-4 ease-in duration-500 lg:mr-32 lg:grid-rows-none lg:grid-cols-4 lg:static lg:h-20'}
+          : 'absolute h-96 w-full -left-full top-20 grid grid-rows-4 ease-in duration-500 lg:mr-32 lg:grid-rows-none lg:grid-cols-4 lg:static lg:h-full'}
         >
-          {links.map((link) => (
-            <li key={link.label} className="grid h-full lg:h-20">
+          {links.map((link, index) => (
+            <li
+              key={link.label}
+              className={index === (links.length - 1) ? 'grid h-full self-center items-center justify-items-center'
+                : 'grid h-full'}
+            >
               <a
                 href={link.url}
-                className="bg-black box-border grid text-white h-full items-center justify-items-center ease-in duration-100
-                hover:text-emerald hover:border-b-4 hover:border-white lg:h-20"
+                className={index === (links.length - 1) ? 'grid w-80 h-10 bg-blue text-white items-center justify-items-center border-2 border-white rounded-3xl lg:w-full'
+                  : 'bg-black box-border grid text-white h-full items-center justify-items-center ease-in duration-100 hover:text-blue hover:border-b-4 hover:border-white lg:h-full'}
               >
                 {link.label}
               </a>
@@ -66,19 +70,19 @@ Navbar.defaultProps = {
   links: [
     {
       url: 'https://google.com',
-      label: 'Google Homepage',
+      label: 'Google',
     },
     {
       url: 'https://bing.com',
-      label: 'Bing Homepage',
+      label: 'Bing',
     },
     {
       url: 'https://ca.yahoo.com',
-      label: 'Yahoo Homepage',
+      label: 'Yahoo',
     },
     {
       url: 'https://duckduckgo.com/',
-      label: 'Duckduckgo Homepage',
+      label: 'Duckduckgo',
     },
   ],
   logo: {
