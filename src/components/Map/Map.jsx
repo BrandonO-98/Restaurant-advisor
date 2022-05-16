@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+// add markers
 
 export default function Map() {
   const coordinates = { lat: 43, lng: -80 };
