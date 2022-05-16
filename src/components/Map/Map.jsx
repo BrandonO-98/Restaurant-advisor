@@ -10,12 +10,11 @@ export default function Map() {
         bootstrapURLKeys={{ key: 'AIzaSyAAzkVyFzH8PUk4V-kHmD2p_ecfH2BzR5M' }}
         defaultCenter={coordinates}
         center={coordinates}
-        defaultZoom={5}
+        defaultZoom={7}
         margin={[50, 50, 50, 50]}
         options=""
         onChange=""
         onChildClick=""
-        height={4}
       />
     </div>
   );
