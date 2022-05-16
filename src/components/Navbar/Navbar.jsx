@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+// import { Autocomplete } from '@react-google-maps/api';
 // How to setup non-absolute paths
 import { ReactComponent as Burger } from '../../icons/menu.svg';
 import { ReactComponent as Cross } from '../../icons/menu-close.svg';
@@ -11,38 +12,54 @@ export default function Navbar({
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
 
+  const [formData, setFormData] = React.useState({
+    search: '',
+  });
+
   return (
     // should this be width of screen or full
-    <nav className="grid w-screen justify-items-center h-20 bg-black sticky">
+    <nav className="z-[1] grid max-w-2xl justify-self-center justify-items-center h-16 bg-indigo-600 fixed top-10 rounded-3xl opacity-90 mx-2 lg:w-10/12 lg:max-w-[80rem]">
       {/* navbar */}
-      <div className="relative grid grid-cols-2 h-full w-full justify-items-center items-center lg:max-w-6xl">
+      <div className="relative grid grid-cols-3 h-full w-full justify-items-center items-center px-12 lg:max-w-[65rem]">
         {/* navbar-container */}
-        <div className="flex items-center h-full lg:mr-40">
+        <div className="flex items-center h-full w-full">
           {/* logo-container */}
           <a href="/">
             <img
               src={logo.url}
-              alt={logo.alt}
-              className="h-20 object-cover"
+              alt={logo.brand}
+              className="h-16 object-cover"
             />
           </a>
-          <h1 className="text-white pl-4 font-bold">
-            <a href={links[0].url}>{logo.alt}</a>
+          <h1 className="text-white pl-4 text-3xl font-bold">
+            <a href={links[0].url}>{logo.brand}</a>
           </h1>
         </div>
-        <ul className={click ? 'absolute h-96 w-full -left-0 top-20 grid grid-rows-4 ease-in duration-500 lg:mr-32 lg:grid-rows-none lg:grid-cols-4 lg:static lg:h-20'
-          : 'absolute h-96 w-full -left-full top-20 grid grid-rows-4 ease-in duration-500 lg:mr-32 lg:grid-rows-none lg:grid-cols-4 lg:static lg:h-full'}
+        <form className="grid h-full items-center w-full">
+          <input
+            type="text"
+            placeholder="Location..."
+            name="search"
+            value={formData.search}
+            onChange={(event) => setFormData(
+              { ...FormData, search: event.target.value },
+            )}
+            className="h-8 rounded-3xl text-center"
+          />
+        </form>
+
+        <ul className={click ? 'bg-indigo-600 absolute h-40 w-full -left-0 top-20 rounded-3xl grid grid-rows-2 ease-in duration-500 lg:grid-rows-none lg:grid-cols-2 lg:static lg:h-20 lg:ml-12'
+          : 'bg-indigo-600 absolute h-40 w-full -left-[1000px] top-20 grid grid-rows-2 ease-in duration-500 lg:grid-rows-none lg:grid-cols-2 lg:static lg:h-full lg:ml-12'}
         >
           {links.map((link, index) => (
             <li
               key={link.label}
-              className={index === (links.length - 1) ? 'grid h-full self-center items-center justify-items-center'
-                : 'grid h-full'}
+              className="grid h-full self-center items-center justify-items-center p-1"
             >
               <a
                 href={link.url}
                 className={index === (links.length - 1) ? 'grid w-80 h-10 bg-blue text-white items-center justify-items-center border-2 border-white rounded-3xl lg:w-full'
-                  : 'bg-black box-border grid text-white h-full items-center justify-items-center ease-in duration-100 hover:text-blue hover:border-b-4 hover:border-white lg:h-full'}
+                  : 'grid w-80 h-10 bg-white text-blue items-center justify-items-center border-2 border-blue rounded-3xl lg:w-full'}
               >
                 {link.label}
               </a>
@@ -51,10 +68,10 @@ export default function Navbar({
         </ul>
         <button
           type="button"
-          className="grid bg-black h-full w-15 lg:hidden items-center justify-center"
+          className="grid bg-indigo-600 h-full w-15 lg:hidden items-center justify-center"
           onClick={handleClick}
         >
-          {click ? <Cross className="w-full h-15 stroke-white" /> : <Burger className="w-full h-15 stroke-white" />}
+          {click ? <Cross className="bg-indigo-600 w-full h-15 stroke-white" /> : <Burger className="bg-indigo-600 w-full h-15 stroke-white" />}
         </button>
       </div>
     </nav>
@@ -69,24 +86,16 @@ Navbar.propTypes = {
 Navbar.defaultProps = {
   links: [
     {
-      url: 'https://google.com',
-      label: 'Google',
-    },
-    {
-      url: 'https://bing.com',
-      label: 'Bing',
-    },
-    {
       url: 'https://ca.yahoo.com',
-      label: 'Yahoo',
+      label: "let's go",
     },
     {
       url: 'https://duckduckgo.com/',
-      label: 'Duckduckgo',
+      label: 'Randomize',
     },
   ],
   logo: {
     url: 'https://flowbite.com/docs/images/logo.svg',
-    alt: 'Alt text for image',
+    brand: 'Foodie',
   },
 };
