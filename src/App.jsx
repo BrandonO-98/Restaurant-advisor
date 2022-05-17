@@ -29,20 +29,24 @@ function App() {
   };
 
   const [places, setPlaces] = useState([]);
+  const [coordinates, setCoordinates] = useState({ lat: 43, lng: -80 });
+  const [bounds, setBounds] = useState({});
 
   useEffect(
     () => {
       getPlacesData()
         .then((data) => setPlaces(data));
     },
-    [],
+    [coordinates, bounds],
   );
 
   console.log(places);
+  console.log(coordinates);
+  console.log(bounds);
   return (
     <div className="grid">
       <Navbar />
-      <Map />
+      <Map setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} />
     </div>
   );
 }
