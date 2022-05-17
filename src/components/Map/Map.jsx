@@ -7,7 +7,7 @@ export default function Map() {
   return (
     <div className="h-screen">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: 'AIzaSyAAzkVyFzH8PUk4V-kHmD2p_ecfH2BzR5M' }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY_GOOGLE }}
         defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={7}
