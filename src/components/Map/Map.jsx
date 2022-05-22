@@ -9,7 +9,7 @@ export default function Map({ setCoordinates, setBounds, coordinates }) {
     <div className="h-screen">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY_GOOGLE }}
-        defaultCenter={coordinates}
+        defaultCenter={{ lat: 42, lng: -80 }}
         center={coordinates}
         defaultZoom={7}
         margin={[50, 50, 50, 50]}

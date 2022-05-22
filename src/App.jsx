@@ -5,23 +5,22 @@ import Map from './components/Map/Map';
 
 function App() {
   const URL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary';
-  const options = {
-    params: {
-      bl_latitude: '11.847676',
-      tr_latitude: '12.838442',
-      bl_longitude: '109.095887',
-      tr_longitude: '109.149359',
-    },
-    headers: {
-      'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com',
-      'X-RapidAPI-Key': process.env.REACT_APP_API_KEY_RAPID,
-    },
-  };
 
   // eslint-disable-next-line consistent-return
-  const getPlacesData = async () => {
+  const getPlacesData = async (ne, sw) => {
     try {
-      const { data: { data } } = await axios.get(URL, options);
+      const { data: { data } } = await axios.get(URL, {
+        params: {
+          bl_latitude: sw.lat,
+          tr_latitude: ne.lat,
+          bl_longitude: sw.lng,
+          tr_longitude: ne.lng,
+        },
+        headers: {
+          'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com',
+          'X-RapidAPI-Key': process.env.REACT_APP_API_KEY_RAPID,
+        },
+      });
       return data;
     } catch (err) {
       console.log(err);
@@ -29,12 +28,19 @@ function App() {
   };
 
   const [places, setPlaces] = useState([]);
-  const [coordinates, setCoordinates] = useState({ lat: 43, lng: -80 });
+  const [coordinates, setCoordinates] = useState({ lat: 0, lng: 0 });
+  // { lat: 43, lng: -80 }
   const [bounds, setBounds] = useState({});
+
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+      setCoordinates({ lat: latitude, lng: longitude });
+    });
+  }, []);
 
   useEffect(
     () => {
-      getPlacesData()
+      getPlacesData(bounds.ne, bounds.sw)
         .then((data) => setPlaces(data));
     },
     [coordinates, bounds],
@@ -46,7 +52,11 @@ function App() {
   return (
     <div className="grid">
       <Navbar />
-      <Map setCoordinates={setCoordinates} setBounds={setBounds} coordinates={coordinates} />
+      <Map
+        setCoordinates={setCoordinates}
+        setBounds={setBounds}
+        coordinates={coordinates}
+      />
     </div>
   );
 }
