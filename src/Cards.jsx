@@ -1,10 +1,35 @@
 import React from 'react';
-import Card from '../src/Card';
+import PropTypes from 'prop-types';
+import Card from './Card';
 
-function Cards() {
+// eslint-disable-next-line react/prop-types
+export default function Cards({ places }) {
+  console.log(places);
+  const filteredPlaces = places.filter((place) => place.name);
   return (
-      <div className="cards-containaer">
-        <Card key={} obj={} />
-      </div>
+    <div className="grid w-11/12 grid-flow-col overflow-x-scroll bg-indigo-200 rounded-2xl">
+      {filteredPlaces.map((place) => (<Card place={place} />))}
+    </div>
   );
 }
+
+Cards.propTypes = {
+  places: PropTypes.arrayOf({
+    name: PropTypes.string,
+    price_level: PropTypes.string,
+    rating: PropTypes.number,
+    num_reviews: PropTypes.number,
+  }),
+};
+
+Cards.defaultProps = {
+  places: [
+    {
+      name: PropTypes.string,
+      price_level: PropTypes.string,
+      rating: PropTypes.number,
+      num_reviews: PropTypes.number,
+      photo: { images: { large: { url: 'https://www.bradfordbuilt.com/uploads/8/6/9/0/86908622/al-ss-loading_orig.jpg' } } },
+    },
+  ],
+};

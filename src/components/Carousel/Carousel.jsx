@@ -1,10 +1,12 @@
 import React from 'react';
-import Cards from '/src/Cards';
+// eslint-disable-next-line import/no-absolute-path
+import Cards from '../../Cards';
 
-export default function Carousel() {
+// eslint-disable-next-line react/prop-types
+export default function Carousel({ places }) {
   return (
-    <div className="bg-black h-20">
-      <Cards places={}/>
+    <div className="grid grid-rows-1 absolute h-80 bottom-5 item-center justify-items-center">
+      <Cards places={places} />
     </div>
   );
 }
