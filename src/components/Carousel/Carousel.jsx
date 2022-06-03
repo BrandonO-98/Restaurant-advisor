@@ -4,10 +4,10 @@ import Container from 'react-bootstrap/Container';
 import Cards from '../../Cards';
 
 // eslint-disable-next-line react/prop-types
-export default function Carousel({ places }) {
+export default function Carousel({ places, childClicked }) {
   return (
     <Container fluid className="d-flex p-0 pt-custom vh-100">
-      <Cards places={places} />
+      <Cards places={places} childClicked={childClicked} />
     </Container>
   );
 }

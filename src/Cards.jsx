@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect, createRef } from 'react';
 import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import CardComponent from './Card';
 
 // eslint-disable-next-line react/prop-types
-export default function Cards({ places }) {
-  console.log(places);
-  const filteredPlaces = places.filter((place) => place.name);
+export default function Cards({ places, childClicked }) {
+  const [refs, setRefs] = useState([]);
+  useEffect(() => {
+    setRefs(Array(places.length).fill().map((_, i) => refs[i] || createRef()));
+  }, [places]);
+
   return (
     <Container
       className="d-flex flex-column align-items-center
       p-0 h-100 overflow-auto"
     >
-      {filteredPlaces.map((place) => (<CardComponent place={place} />))}
+      {places.map((place, index) => (
+        <CardComponent
+          place={place}
+          refprop={refs[index]}
+          selected={Number(childClicked) === index}
+        />
+      ))}
     </Container>
   );
 }

@@ -35,9 +35,12 @@ function App() {
   };
   // Set a limit of how many restaus to render. Add a toggle for number of results.
   const [places, setPlaces] = useState([]);
+  const filteredPlaces = places?.filter((place) => place.name);
+
   const [coordinates, setCoordinates] = useState({});
   // { lat: 43, lng: -80 }
   const [bounds, setBounds] = useState({});
+  const [childClicked, setChildClicked] = useState();
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -56,13 +59,20 @@ function App() {
     <Container fluid className="p-0 m-0">
       <Searchbar />
       <Row className="w-100 m-0">
-        <Col className="p-0"><Carousel places={places} /></Col>
+        <Col className="p-0">
+          <Carousel
+            places={filteredPlaces}
+            childClicked={childClicked}
+          />
+
+        </Col>
         <Col className="p-0 vh-100" md={9}>
           <Map
-            places={places}
+            places={filteredPlaces}
             setCoordinates={setCoordinates}
             setBounds={setBounds}
             coordinates={coordinates}
+            setChildClicked={setChildClicked}
           />
         </Col>
       </Row>

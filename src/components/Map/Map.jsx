@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import { ReactComponent as Location } from '../../icons/location.svg';
 
 export default function Map({
-  setCoordinates, setBounds, coordinates, places,
+  setCoordinates, setBounds, coordinates, places, setChildClicked,
 }) {
   // const coordinates = { lat: 43, lng: -80 };
   return (
@@ -27,7 +27,7 @@ export default function Map({
             sw: e.marginBounds.sw,
           });
         }}
-        onChildClick=""
+        onChildClick={(child) => { setChildClicked(child); }}
       >
         {places?.map((place) => (
           <div

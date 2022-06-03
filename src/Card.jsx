@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 import React from 'react';
@@ -12,12 +13,13 @@ export default function CardComponent({
   place: {
     name, price_level, ranking, rating, num_reviews,
     photo, cuisine, address, phone, website, web_url,
-  },
+  }, refprop, selected,
 }) {
-  // console.log(cuisine?.map((a) => a));
+  if (selected) refprop.current.scrollIntoView({ behavior: 'smooth' });
+
   return (
 
-    <Card style={{ width: '24rem' }} className="shadow m-2">
+    <Card style={{ width: '24rem' }} className="shadow m-2" ref={refprop}>
       <Card.Img
         variant="top"
         src={photo ? photo.images.large.url : 'https://d16jvv1mxapgw7.cloudfront.net/cover_demo_restaurant_2018.jpg'}
