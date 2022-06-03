@@ -57,8 +57,9 @@ function App() {
       <Searchbar />
       <Row className="w-100 m-0">
         <Col className="p-0"><Carousel places={places} /></Col>
-        <Col className="p-0" md={9}>
+        <Col className="p-0 vh-100" md={9}>
           <Map
+            places={places}
             setCoordinates={setCoordinates}
             setBounds={setBounds}
             coordinates={coordinates}

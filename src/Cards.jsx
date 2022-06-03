@@ -10,7 +10,7 @@ export default function Cards({ places }) {
   return (
     <Container
       className="d-flex flex-column align-items-center
-      p-0 vh-100 overflow-auto"
+      p-0 h-100 overflow-auto"
     >
       {filteredPlaces.map((place) => (<CardComponent place={place} />))}
     </Container>
@@ -29,6 +29,7 @@ Cards.propTypes = {
     address: PropTypes.string,
     phone: PropTypes.string,
     website: PropTypes.string,
+    web_url: PropTypes.string,
   }),
 };
 
@@ -45,6 +46,20 @@ Cards.defaultProps = {
       address: '24 Dong Khoi, Dien Dien 650000 Vietnam',
       phone: '+84 58 3772 279',
       website: 'https://www.facebook.com/YOLO-Man-Restaurant-1569064976708000/',
+      web_url: 'https://www.tripadvisor.com/Restaurant_Review-g15296278-d9982902-Reviews-Yolo_Man_Restaurant-Dien_Dien_Khanh_Hoa_Province.html',
+    },
+    {
+      name: 'Yolo Man Restaurant',
+      price_level: '$$ - $$$',
+      ranking: '#1 of 1 Restaurants in Dien Dien',
+      rating: '5.0',
+      num_reviews: '64',
+      photo: { images: { large: { url: 'https://media-cdn.tripadvisor.com/media/photo-s/0a/35/c6/91/getlstd-property-photo.jpg' } } },
+      cuisine: [{ key: '121', name: 'vietnamese' }],
+      address: '24 Dong Khoi, Dien Dien 650000 Vietnam',
+      phone: '+84 58 3772 279',
+      website: 'https://www.facebook.com/YOLO-Man-Restaurant-1569064976708000/',
+      web_url: 'https://www.tripadvisor.com/Restaurant_Review-g15296278-d9982902-Reviews-Yolo_Man_Restaurant-Dien_Dien_Khanh_Hoa_Province.html',
     },
   ],
 };

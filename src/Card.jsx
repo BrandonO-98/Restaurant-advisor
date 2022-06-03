@@ -10,9 +10,11 @@ import { ReactComponent as Phone } from './icons/phone.svg';
 
 export default function CardComponent({
   place: {
-    name, price_level, ranking, rating, num_reviews, photo, cuisine, address, phone, website,
+    name, price_level, ranking, rating, num_reviews,
+    photo, cuisine, address, phone, website, web_url,
   },
 }) {
+  // console.log(cuisine?.map((a) => a));
   return (
 
     <Card style={{ width: '24rem' }} className="shadow m-2">
@@ -57,7 +59,8 @@ export default function CardComponent({
             </p>
           </div>
         </Card.Text>
-        <Button href={website} target="_blanck" variant="success" size="sm">Go to website</Button>
+        <Button href={website} target="_blanck" variant="success" size="sm" className="px-2 mx-1">Website</Button>
+        <Button href={web_url} target="_blanck" variant="success" size="sm" className="px-2 mx-1">Trip Advisor </Button>
       </Card.Body>
     </Card>
   );
@@ -75,5 +78,6 @@ CardComponent.propTypes = {
     address: PropTypes.string,
     phone: PropTypes.string,
     website: PropTypes.string,
+    web_url: PropTypes.string,
   }.isRequired,
 };

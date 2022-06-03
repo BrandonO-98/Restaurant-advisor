@@ -31,3 +31,37 @@
 .font-md {
   font-size:medium;
 }
+
+.marker {
+  z-index: 1;
+}
+
+.marker-info {
+  position: absolute;
+  display: none;
+  z-index: 999;
+  overflow: hidden;
+  border-radius:2px ;
+  border: solid black 1px;
+}
+
+.img-marker-info {
+  width: 90%;
+  object-fit: cover;
+  border-radius: 2px;
+  justify-self: center;
+  align-self: center;
+}
+
+.marker:hover {
+  cursor: pointer;
+}
+
+.marker:hover .marker-info {
+  display: grid;
+  height: 200px;
+  width: 200px;
+  background-color: aliceblue;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+}
+
