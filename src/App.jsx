@@ -1,8 +1,14 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Navbar from './components/Navbar/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Searchbar from './components/Navbar/Navbar';
 import Map from './components/Map/Map';
 import Carousel from './components/Carousel/Carousel';
+import './App.css';
 
 function App() {
   const URL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary';
@@ -27,7 +33,7 @@ function App() {
       console.log(err);
     }
   };
-
+  // Set a limit of how many restaus to render. Add a toggle for number of results.
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({});
   // { lat: 43, lng: -80 }
@@ -47,15 +53,19 @@ function App() {
     [coordinates, bounds],
   );
   return (
-    <div className="grid">
-      <Navbar />
-      <Map
-        setCoordinates={setCoordinates}
-        setBounds={setBounds}
-        coordinates={coordinates}
-      />
-      <Carousel places={places} />
-    </div>
+    <Container fluid className="p-0 m-0">
+      <Searchbar />
+      <Row className="w-100 m-0">
+        <Col className="p-0"><Carousel places={places} /></Col>
+        <Col className="p-0" md={9}>
+          <Map
+            setCoordinates={setCoordinates}
+            setBounds={setBounds}
+            coordinates={coordinates}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

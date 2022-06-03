@@ -1,5 +1,6 @@
 import React from 'react';
 import GoogleMapReact from 'google-map-react';
+import Container from 'react-bootstrap/Container';
 
 // add markers
 
@@ -7,7 +8,7 @@ import GoogleMapReact from 'google-map-react';
 export default function Map({ setCoordinates, setBounds, coordinates }) {
   // const coordinates = { lat: 43, lng: -80 };
   return (
-    <div className="h-screen">
+    <Container fluid className="h-100 p-0 m-0">
       <GoogleMapReact
         bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY_GOOGLE }}
         defaultCenter={{ lat: 42, lng: -80 }}
@@ -26,6 +27,6 @@ export default function Map({ setCoordinates, setBounds, coordinates }) {
         }}
         onChildClick=""
       />
-    </div>
+    </Container>
   );
 }

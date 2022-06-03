@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital@1&display=swap');
+
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.pt-custom,
+.py-custom {
+  padding-top: 56px !important;
+}
+
+.pr-custom,
+.px-custom {
+  padding-right: 56px !important;
+}
+
+.pb-custom,
+.py-custom {
+  padding-bottom: 5rem !important;
+}
+
+.pl-custom,
+.px-custom {
+  padding-left: 5rem !important;
+}
+
+.font-sm {
+  font-size:small;
+}
+
+.font-md {
+  font-size:medium;
+}

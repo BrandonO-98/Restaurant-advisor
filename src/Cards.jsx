@@ -1,15 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from './Card';
+import Container from 'react-bootstrap/Container';
+import CardComponent from './Card';
 
 // eslint-disable-next-line react/prop-types
 export default function Cards({ places }) {
   console.log(places);
   const filteredPlaces = places.filter((place) => place.name);
   return (
-    <div className="grid w-11/12 grid-flow-col overflow-x-scroll bg-indigo-200 rounded-2xl">
-      {filteredPlaces.map((place) => (<Card place={place} />))}
-    </div>
+    <Container
+      className="d-flex flex-column align-items-center
+      p-0 vh-100 overflow-auto"
+    >
+      {filteredPlaces.map((place) => (<CardComponent place={place} />))}
+    </Container>
   );
 }
 
@@ -17,19 +21,30 @@ Cards.propTypes = {
   places: PropTypes.arrayOf({
     name: PropTypes.string,
     price_level: PropTypes.string,
-    rating: PropTypes.number,
-    num_reviews: PropTypes.number,
+    ranking: PropTypes.string,
+    rating: PropTypes.string,
+    num_reviews: PropTypes.string,
+    photo: { images: { large: { url: PropTypes.string } } },
+    cuisine: PropTypes.arrayOf({ key: PropTypes.string, name: PropTypes.string }),
+    address: PropTypes.string,
+    phone: PropTypes.string,
+    website: PropTypes.string,
   }),
 };
 
 Cards.defaultProps = {
   places: [
     {
-      name: PropTypes.string,
-      price_level: PropTypes.string,
-      rating: PropTypes.number,
-      num_reviews: PropTypes.number,
-      photo: { images: { large: { url: 'https://www.bradfordbuilt.com/uploads/8/6/9/0/86908622/al-ss-loading_orig.jpg' } } },
+      name: 'Yolo Man Restaurant',
+      price_level: '$$ - $$$',
+      ranking: '#1 of 1 Restaurants in Dien Dien',
+      rating: '5.0',
+      num_reviews: '64',
+      photo: { images: { large: { url: 'https://media-cdn.tripadvisor.com/media/photo-s/0a/35/c6/91/getlstd-property-photo.jpg' } } },
+      cuisine: [{ key: '121', name: 'vietnamese' }],
+      address: '24 Dong Khoi, Dien Dien 650000 Vietnam',
+      phone: '+84 58 3772 279',
+      website: 'https://www.facebook.com/YOLO-Man-Restaurant-1569064976708000/',
     },
   ],
 };
