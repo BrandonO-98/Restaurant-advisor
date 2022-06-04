@@ -42,6 +42,8 @@ function App() {
   const [bounds, setBounds] = useState({});
   const [childClicked, setChildClicked] = useState();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
       setCoordinates({ lat: latitude, lng: longitude });
@@ -50,8 +52,12 @@ function App() {
 
   useEffect(
     () => {
+      setIsLoading(true);
       getPlacesData(bounds.ne, bounds.sw)
-        .then((data) => setPlaces(data));
+        .then((data) => {
+          setPlaces(data);
+          setIsLoading(false);
+        });
     },
     [coordinates, bounds],
   );
@@ -63,6 +69,7 @@ function App() {
           <Carousel
             places={filteredPlaces}
             childClicked={childClicked}
+            isLoading={isLoading}
           />
 
         </Col>
