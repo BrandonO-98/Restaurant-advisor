@@ -35,7 +35,6 @@ function App() {
   };
   // Set a limit of how many restaus to render. Add a toggle for number of results.
   const [places, setPlaces] = useState([]);
-  const filteredPlaces = places?.filter((place) => place.name);
 
   const [coordinates, setCoordinates] = useState({});
   // { lat: 43, lng: -80 }
@@ -52,22 +51,26 @@ function App() {
 
   useEffect(
     () => {
-      setIsLoading(true);
-      getPlacesData(bounds.ne, bounds.sw)
-        .then((data) => {
-          setPlaces(data);
-          setIsLoading(false);
-        });
+      if (bounds.sw && bounds.ne) {
+        setIsLoading(true);
+        getPlacesData(bounds.ne, bounds.sw)
+          .then((data) => {
+          // filter places before setting to state
+            setPlaces(data?.filter((place) => place.name));
+            setIsLoading(false);
+          });
+      }
     },
-    [coordinates, bounds],
+    [bounds],
   );
+
   return (
     <Container fluid className="p-0 m-0">
       <Searchbar setCoordinates={setCoordinates} />
       <Row className="w-100 m-0">
         <Col className="p-0">
           <Carousel
-            places={filteredPlaces}
+            places={places}
             childClicked={childClicked}
             isLoading={isLoading}
           />
@@ -75,7 +78,7 @@ function App() {
         </Col>
         <Col className="p-0 vh-100" md={9}>
           <Map
-            places={filteredPlaces}
+            places={places}
             setCoordinates={setCoordinates}
             setBounds={setBounds}
             coordinates={coordinates}
