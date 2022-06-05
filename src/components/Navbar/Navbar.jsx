@@ -26,7 +26,6 @@ export default function Searchbar({ setCoordinates }) {
     const lat = autocomplete.getPlace().geometry.location.lat();
     const lng = autocomplete.getPlace().geometry.location.lng();
     setCoordinates({ lat, lng });
-    console.log('run');
   };
 
   return (
@@ -43,7 +42,6 @@ export default function Searchbar({ setCoordinates }) {
               placeholder="Search"
               className="me-2"
               aria-label="Search"
-              // onKeyDown={(e) => e.preventDefault()}
             />
             <Search className="d-flex align-self-center" height={25} width={25} />
           </Form>

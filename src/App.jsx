@@ -16,18 +16,7 @@ function App() {
   // eslint-disable-next-line consistent-return
   const getPlacesData = async (ne, sw) => {
     try {
-      const { data: { data } } = await axios.get(URL, {
-        params: {
-          bl_latitude: sw.lat,
-          tr_latitude: ne.lat,
-          bl_longitude: sw.lng,
-          tr_longitude: ne.lng,
-        },
-        headers: {
-          'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com',
-          'X-RapidAPI-Key': process.env.REACT_APP_API_KEY_RAPID,
-        },
-      });
+      const { data } = await axios.get('/.netlify/functions/getPlaces', { params: { ne, sw } });
       return data;
     } catch (err) {
       console.log(err);

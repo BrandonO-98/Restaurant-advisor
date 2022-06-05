@@ -1,5 +1,5 @@
 {
-  "name": "travel-advisor",
+  "name": "restaurant-advisor",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -22,7 +22,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "dev" : "netlify-dev"
   },
   "eslintConfig": {
     "extends": [
@@ -49,7 +50,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.5.0"
-  },
-  "overrides": { "autoprefixer": "10.4.5" }
+    "eslint-plugin-react-hooks": "^4.5.0",
+    "netlify-cli": "^10.4.0"
+  }
 }
