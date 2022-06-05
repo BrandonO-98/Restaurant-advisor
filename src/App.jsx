@@ -63,7 +63,7 @@ function App() {
   );
   return (
     <Container fluid className="p-0 m-0">
-      <Searchbar />
+      <Searchbar setCoordinates={setCoordinates} />
       <Row className="w-100 m-0">
         <Col className="p-0">
           <Carousel
