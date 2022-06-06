@@ -16,9 +16,7 @@ export default function CardComponent({
   }, refprop, selected,
 }) {
   if (selected) refprop.current.scrollIntoView({ behavior: 'smooth' });
-
   return (
-
     <Card style={{ width: '90%' }} className="shadow m-2" ref={refprop}>
       <Card.Img
         variant="top"
