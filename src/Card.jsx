@@ -19,12 +19,11 @@ export default function CardComponent({
 
   return (
 
-    <Card style={{ width: '24rem' }} className="shadow m-2" ref={refprop}>
+    <Card style={{ width: '90%' }} className="shadow m-2" ref={refprop}>
       <Card.Img
         variant="top"
         src={photo ? photo.images.large.url : 'https://d16jvv1mxapgw7.cloudfront.net/cover_demo_restaurant_2018.jpg'}
         alt="Restaurant"
-        className="h-50 w-40"
       />
       <Card.Body>
         <Card.Title className="font-md">{name}</Card.Title>

@@ -11,8 +11,6 @@ import Carousel from './components/Carousel/Carousel';
 import './App.css';
 
 function App() {
-  const URL = 'https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary';
-
   // eslint-disable-next-line consistent-return
   const getPlacesData = async (ne, sw) => {
     try {
@@ -65,7 +63,7 @@ function App() {
           />
 
         </Col>
-        <Col className="p-0 vh-100" md={9}>
+        <Col className="p-0 vh-100" sm={6} md={7} lg={8} xl={9}>
           <Map
             places={places}
             setCoordinates={setCoordinates}
