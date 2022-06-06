@@ -15,7 +15,6 @@ function App() {
   const getPlacesData = async (ne, sw) => {
     try {
       const { data } = await axios.get('/.netlify/functions/getPlaces', { params: { ne, sw } });
-      console.log(data);
       return data;
     } catch (err) {
       console.log(err);
@@ -45,7 +44,6 @@ function App() {
           .then((data) => {
           // filter places before setting to state
             setPlaces(data?.filter((place) => place.name));
-            console.log('filtered');
             setIsLoading(false);
           });
       }

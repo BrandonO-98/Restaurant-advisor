@@ -9,7 +9,7 @@ export default function Cards({ places, childClicked }) {
   useEffect(() => {
     setRefs(Array(places.length).fill().map((_, i) => refs[i] || createRef()));
   }, [places]);
-
+  console.log(refs);
   return (
     <Container
       className="d-flex flex-column align-items-center
