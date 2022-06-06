@@ -12,7 +12,7 @@ export default function Map({
   return (
     <Container fluid className="h-100 p-0 pt-custom m-0">
       <GoogleMapReact
-        bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY_GOOGLE }}
+        bootstrapURLKeys={{ key: process.env.REACT_APP_GOOGLE_API_KEY }}
         defaultCenter={{ lat: 42, lng: -80 }}
         center={coordinates}
         defaultZoom={7}
