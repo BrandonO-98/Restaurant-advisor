@@ -29,13 +29,18 @@ export default function Searchbar({ setCoordinates }) {
   };
 
   return (
-    <Navbar bg="light" expand="lg" fixed="top" collapseOnSelect>
+    <Navbar
+      className="pt-0 pb-0"
+      bg="light"
+      expand="lg"
+      fixed="top"
+      collapseOnSelect
+    >
       <Container fluid>
-        <Navbar.Brand href="#">Foodie</Navbar.Brand>
-        <Autocomplete
-          onLoad={onLoad}
-          onPlaceChanged={onPlaceChanged}
-        >
+        <Navbar.Brand href="#">
+          <img height={45} width={90} src="logo.png" alt="" />
+        </Navbar.Brand>
+        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
           <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
             <FormControl
               type="search"
@@ -43,11 +48,14 @@ export default function Searchbar({ setCoordinates }) {
               className="me-2"
               aria-label="Search"
             />
-            <Search className="d-flex align-self-center" height={25} width={25} />
+            <Search
+              className="d-flex align-self-center"
+              height={25}
+              width={25}
+            />
           </Form>
         </Autocomplete>
       </Container>
     </Navbar>
-
   );
 }
