@@ -38,7 +38,7 @@ export default function Searchbar({ setCoordinates }) {
     >
       <Container fluid>
         <Navbar.Brand href="#">
-          <img height={45} width={90} src="logo.png" alt="" />
+          <img height={48} width={150} src="logo.png" alt="" />
         </Navbar.Brand>
         <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
           <Form className="d-flex" onSubmit={(e) => e.preventDefault()}>
