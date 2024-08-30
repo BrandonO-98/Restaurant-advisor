@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -14,7 +15,9 @@ function App() {
   // eslint-disable-next-line consistent-return
   const getPlacesData = async (ne, sw) => {
     try {
-      const { data } = await axios.get('/.netlify/functions/getPlaces', { params: { ne, sw } });
+      const { data } = await axios.get('/.netlify/functions/getPlaces', {
+        params: { ne, sw },
+      });
       return data;
     } catch (err) {
       console.log(err);
@@ -31,38 +34,28 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
-      setCoordinates({ lat: latitude, lng: longitude });
-    });
+    navigator.geolocation.getCurrentPosition(
+      ({ coords: { latitude, longitude } }) => {
+        setCoordinates({ lat: latitude, lng: longitude });
+      }
+    );
   }, []);
 
-  useEffect(
-    () => {
-      if (bounds.sw && bounds.ne) {
-        setIsLoading(true);
-        getPlacesData(bounds.ne, bounds.sw)
-          .then((data) => {
-          // filter places before setting to state
-            setPlaces(data?.filter((place) => place.name));
-            setIsLoading(false);
-          });
-      }
-    },
-    [bounds],
-  );
+  useEffect(() => {
+    if (bounds.sw && bounds.ne) {
+      setIsLoading(true);
+      getPlacesData(bounds.ne, bounds.sw).then((data) => {
+        // filter places before setting to state
+        setPlaces(data?.filter((place) => place.name));
+        setIsLoading(false);
+      });
+    }
+  }, [bounds]);
 
   return (
     <Container fluid className="p-0 m-0">
       <Searchbar setCoordinates={setCoordinates} />
       <Row className="w-100 m-0">
-        <Col className="p-0">
-          <Carousel
-            places={places}
-            childClicked={childClicked}
-            isLoading={isLoading}
-          />
-
-        </Col>
         <Col className="p-0 vh-100" sm={6} md={7} lg={8} xl={9}>
           <Map
             places={places}
@@ -70,6 +63,13 @@ function App() {
             setBounds={setBounds}
             coordinates={coordinates}
             setChildClicked={setChildClicked}
+          />
+        </Col>
+        <Col className="p-0">
+          <Carousel
+            places={places}
+            childClicked={childClicked}
+            isLoading={isLoading}
           />
         </Col>
       </Row>

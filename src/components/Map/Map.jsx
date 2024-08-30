@@ -6,7 +6,11 @@ import Container from 'react-bootstrap/Container';
 import { ReactComponent as Location } from '../../icons/location.svg';
 
 export default function Map({
-  setCoordinates, setBounds, coordinates, places, setChildClicked,
+  setCoordinates,
+  setBounds,
+  coordinates,
+  places,
+  setChildClicked,
 }) {
   // const coordinates = { lat: 43, lng: -80 };
   return (
@@ -27,7 +31,9 @@ export default function Map({
             sw: e.marginBounds.sw,
           });
         }}
-        onChildClick={(child) => { setChildClicked(child); }}
+        onChildClick={(child) => {
+          setChildClicked(child);
+        }}
       >
         {places?.map((place) => (
           <div
@@ -35,12 +41,7 @@ export default function Map({
             lat={Number(place.latitude)}
             lng={Number(place.longitude)}
           >
-            <Location
-              stroke="#ff0000"
-              fill="#f75757"
-              width="30"
-              height="30"
-            />
+            <Location stroke="#ff0000" fill="#f75757" width="30" height="30" />
             <div className="marker-info">
               <div className="d-flex justify-content-center pt-2 pb-0">
                 <p className="font-sm px-2 py-0">{place.name}</p>
@@ -48,7 +49,11 @@ export default function Map({
               </div>
               <img
                 className="img-marker-info"
-                src={place.photo ? place.photo.images.large.url : 'https://d16jvv1mxapgw7.cloudfront.net/cover_demo_restaurant_2018.jpg'}
+                src={
+                  place.photo
+                    ? place.photo.images.large.url
+                    : 'https://d16jvv1mxapgw7.cloudfront.net/cover_demo_restaurant_2018.jpg'
+                }
                 alt="place"
               />
             </div>

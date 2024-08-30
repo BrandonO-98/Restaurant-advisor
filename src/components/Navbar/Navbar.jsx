@@ -36,7 +36,7 @@ export default function Searchbar({ setCoordinates }) {
       fixed="top"
       collapseOnSelect
     >
-      <Container fluid>
+      <Container fluid className="flex-nowrap">
         <Navbar.Brand href="#">
           <img height={48} width={150} src="logo.png" alt="" />
         </Navbar.Brand>

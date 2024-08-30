@@ -6,14 +6,21 @@ import Cards from '../../Cards';
 // eslint-disable-next-line react/prop-types
 export default function Carousel({ places, childClicked, isLoading }) {
   return (
-    <Container fluid className="d-flex p-0 pt-custom vh-100 justify-content-center align-items-center">
-      {isLoading
-        ? (
-          <div className="spinner-border mb-5" role="status" style={{ width: '8rem', height: '8rem' }}>
-            <span className="sr-only" />
-          </div>
-        )
-        : <Cards places={places} childClicked={childClicked} />}
+    <Container
+      fluid
+      className="d-flex pt-custom vh-100 justify-content-center align-items-center"
+    >
+      {isLoading ? (
+        <div
+          className="spinner-border mb-5"
+          role="status"
+          style={{ width: '8rem', height: '8rem' }}
+        >
+          <span className="sr-only" />
+        </div>
+      ) : (
+        <Cards places={places} childClicked={childClicked} />
+      )}
     </Container>
   );
 }
